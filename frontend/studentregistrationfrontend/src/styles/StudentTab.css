@@ -1,0 +1,40 @@
+/* Student details panel */
+.student-details {
+  margin-top: 24px;
+  padding: 20px;
+  border: 1px solid #dce6e1;
+  border-radius: 12px;
+  background: #f1f8f4;
+}
+
+.student-details h3 { color: #14594f; }
+.student-details p { margin: 12px 0; overflow-wrap: anywhere; }
+
+.student-details button { background: #087f6e; }
+.student-details button:hover { background: #066657; }
+
+/* Student pagination */
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.pagination p { margin: 0; color: #687873; font-size: 14px; }
+
+.pagination-buttons {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.pagination-buttons span { font-size: 14px; font-weight: 600; }
+.pagination-buttons button:disabled { opacity: .5; cursor: not-allowed; }
+
+@media (max-width: 600px) {
+  .pagination { align-items: flex-start; flex-direction: column; }
+}

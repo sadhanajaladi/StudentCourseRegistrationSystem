@@ -1,0 +1,125 @@
+/* Enrollment dashboard */
+.enrollments-page .admin-section { padding: 28px; }
+
+.enrollment-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.enrollment-heading h2 { margin: 0 0 8px; }
+.enrollment-heading p { margin: 0; color: #687873; font-size: 14px; }
+
+.enrollment-total,
+.enrollment-course-code {
+  display: inline-block;
+  padding: 7px 11px;
+  border-radius: 7px;
+  background: #e2f4ed;
+  color: #087f6e;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.enrollment-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.enrollment-summary-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  border: 1px solid #dce6e1;
+  border-radius: 12px;
+  background: #f6faf7;
+}
+
+.enrollment-summary-card span { color: #687873; font-size: 13px; }
+.enrollment-summary-card strong { color: #14594f; font-size: 27px; }
+.enrollment-summary-card .enrollment-active-count { color: #177b52; }
+
+.enrollment-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.enrollment-search {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 460px;
+  padding: 12px 14px;
+  border: 1px solid #cbdad3;
+  border-radius: 9px;
+  outline: none;
+  font: inherit;
+  font-size: 14px;
+}
+
+.enrollment-search:focus {
+  border-color: #087f6e;
+  box-shadow: 0 0 0 3px rgba(8, 127, 110, .13);
+}
+
+.enrollment-results { color: #687873; font-size: 13px; white-space: nowrap; }
+.enrollment-table td { vertical-align: middle; }
+.enrollment-student-name { color: #14594f; font-weight: 600; }
+
+.enrollment-status {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 20px;
+  background: #edf1ef;
+  color: #52665e;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.enrollment-status.status-enrolled,
+.enrollment-status.status-confirmed { background: #def5e8; color: #17643c; }
+
+.enrollment-status.status-pending { background: #fff2d6; color: #8a5b00; }
+
+.enrollment-status.status-cancelled,
+.enrollment-status.status-released { background: #ffebe8; color: #a12c24; }
+
+.enrollment-delete-button {
+  padding: 8px 12px;
+  border: 0;
+  border-radius: 7px;
+  background: #ffebe8;
+  color: #a12c24;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.enrollment-delete-button:hover:not(:disabled) { background: #ffdad5; }
+.enrollment-delete-button:disabled { opacity: .6; cursor: not-allowed; }
+
+.enrollment-empty {
+  padding: 36px 20px;
+  border: 1px dashed #cbdad3;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.enrollment-empty h3 { margin: 0 0 8px; color: #334b44; }
+.enrollment-empty p { margin: 0; color: #687873; font-size: 14px; }
+
+@media (max-width: 650px) {
+  .enrollments-page .admin-section { padding: 18px 14px; }
+  .enrollment-summary { grid-template-columns: 1fr; }
+  .enrollment-heading,
+  .enrollment-toolbar { align-items: flex-start; flex-direction: column; }
+  .enrollment-search { max-width: none; }
+}
