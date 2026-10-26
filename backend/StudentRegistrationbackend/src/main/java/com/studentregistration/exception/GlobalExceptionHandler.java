@@ -8,11 +8,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import jakarta.validation.ConstraintViolationException;
+import org.springframework.web.server.ResponseStatusException;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+	private static final Logger logger =
+	        LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<Map<String, String>> handleIllegalArgument(
@@ -47,13 +51,26 @@ public class GlobalExceptionHandler {
                 .badRequest()
                 .body(Map.of("message", "Request validation failed."));
     }
-
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<Map<String, String>> handleGeneralException(
-            Exception exception) {
+    @ExceptionHandler(ResponseStatusException.class)
+    public ResponseEntity<Map<String, String>> handleResponseStatusException(
+            ResponseStatusException exception) {
 
         return ResponseEntity
-                .status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(Map.of("message", "An unexpected error occurred."));
+                .status(exception.getStatusCode())
+                .body(Map.of("message", exception.getReason() != null
+                        ? exception.getReason()
+                        : "Request failed."));
     }
+
+@ExceptionHandler(Exception.class)
+public ResponseEntity<Map<String, String>> handleGeneralException(
+        Exception exception) {
+
+    logger.error("Unexpected error while processing request", exception);
+
+    return ResponseEntity
+            .status(HttpStatus.INTERNAL_SERVER_ERROR)
+            .body(Map.of("message", "An unexpected error occurred."));
+}
+
 }

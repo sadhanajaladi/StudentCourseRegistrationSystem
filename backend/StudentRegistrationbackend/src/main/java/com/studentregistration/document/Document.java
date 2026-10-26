@@ -35,7 +35,13 @@ public class Document {
 
     @Column(nullable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
+    
+    @Column(nullable = false)
+    private Boolean checkedOut = false;
 
+    @Column
+    private String checkedOutBy;
+    
     public Document() {
     }
 
@@ -77,5 +83,20 @@ public class Document {
 
     public LocalDateTime getCreatedAt() {
         return createdAt;
+    }
+    public Boolean getCheckedOut() {
+        return checkedOut;
+    }
+
+    public void setCheckedOut(Boolean checkedOut) {
+        this.checkedOut = checkedOut;
+    }
+
+    public String getCheckedOutBy() {
+        return checkedOutBy;
+    }
+
+    public void setCheckedOutBy(String checkedOutBy) {
+        this.checkedOutBy = checkedOutBy;
     }
 }
